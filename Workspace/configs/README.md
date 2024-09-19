@@ -18,6 +18,9 @@ everything to work:
 > If a file exists while checkout is running, it will throw an error. Be sure to
 > back up or handle the file somehow before moving on
 
+> [!TIP]
+> Be sure to run `LazyHealth` after installation to make sure Neovim is good
+
 ## Working with this repo
 
 After setting the config files up, it will add a fish terminal alias for the
