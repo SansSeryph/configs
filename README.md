@@ -7,12 +7,28 @@ for this was done using this Atlassian blog post as a guide:
 
 ## Setting it up
 
-This repo requires you to clone this to `~/Workspace/configs` in order for
-everything to work:
+Below is a quick one-shot list of commands to just get everything to work for
+the fish shell. It will:
 
-1. Clone the repo: `git clone --bare <git-repo-url> $HOME/Workspace/configs/`
-2. Go into the directory: `cd $HOME/Workspace/configs/`
-3. Run checkout: `git checkout`
+1. Back up configs that will conflict with the repo during checkout
+2. Clone the repo. You'll need to update the path if you fork this
+3. Install everything using `git checkout`
+
+```shell
+mv $HOME/.config/bat $HOME/.config/bat.bak
+mv $HOME/.config/fish $HOME/.config/fish.bak
+mv $HOME/.config/kitty $HOME/.config/kitty.bak
+mv $HOME/.config/nvim $HOME/.config/nvim.bak
+
+mv $HOME/.default-gems $HOME/.default-gems.bak
+mv $HOME/.default-npm-packages $HOME/.default-npm-packages.bak
+mv $HOME/.default-python-packages $HOME/.default-python-packages.bak
+
+set -l config git --git-dir $HOME/Workspace/configs/ --work-tree=$HOME
+git clone --bare git@github.com:SansSeryph/configs.git $HOME/Workspace/configs/
+config checkout
+config config --local status.showUntrackedFiles no
+```
 
 > [!IMPORTANT]
 > If a file exists while checkout is running, it will throw an error. Be sure to
